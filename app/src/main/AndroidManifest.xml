@@ -17,6 +17,8 @@
     package="com.example.android.quakereport">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Permission to get network state -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
