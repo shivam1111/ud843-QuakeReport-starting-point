@@ -25,7 +25,7 @@ public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
      */
     public EarthquakeLoader(Context context, String url) {
         super(context);
-        mUrl = url;
+        mUrl = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=10&minmag=7&orderby=time";
     }
 
     @Override
@@ -39,7 +39,7 @@ public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
      */
     @Override
     public List<Earthquake> loadInBackground() {
-        Log.i(LOG_TAG,"TEST: EarthquakeLoader loadInBackground() called");
+        Log.i(LOG_TAG,"TEST: EarthquakeLoader loadInBackground() called - "+mUrl);
         if (mUrl == null) {
             return null;
         }
