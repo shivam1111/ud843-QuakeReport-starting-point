@@ -27,7 +27,7 @@ import java.util.prefs.PreferenceChangeListener;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG  = SettingsActivity.class.getSimpleName();
+    private static final String LOG_TAG = SettingsActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +57,13 @@ public class SettingsActivity extends AppCompatActivity {
             // The code in this method takes care of updating the displayed preference summary after it has been changed
             String stringValue = value.toString();
             preference.setSummary(stringValue);
-            return false;
+            System.out.println("onPreferenceChange: " + value);
+            return true;
         }
 
         private void bindPreferenceSummaryToValue(Preference preference) {
             preference.setOnPreferenceChangeListener(this);
-            Log.i(LOG_TAG,"TEST: bindPreferenceSummaryToValue() called......"+this.toString());
+            Log.i(LOG_TAG, "TEST: bindPreferenceSummaryToValue() called......" + this.toString());
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(preference.getContext());
             String preferenceString = preferences.getString(preference.getKey(), "");
             onPreferenceChange(preference, preferenceString);

@@ -154,10 +154,10 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
                 getString(R.string.settings_order_by_key),
                 getString(R.string.settings_order_by_default)
         );
-
+        uriBuilder.appendQueryParameter("orderby", orderBy);
         Log.i(LOG_TAG,"TEST: onCreate Loader");
 
-        // Return the completed uri `http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=10&minmag=minMagnitude&orderby=time
+        // Return the completed uri `http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=10&minmag=minMagnitude&orderby=time`
         return new EarthquakeLoader(this, uriBuilder.toString());
 
     }
@@ -170,7 +170,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         // Set the visibility of the Progess Bar to GONE
         mProgressBar.setVisibility(View.GONE);
 
-        Log.i(LOG_TAG,"TEST: Earthquake Activity onLoadFinished() called");
+        Log.v(LOG_TAG, "TEST: Earthquake Activity onLoadFinished() called" + earthquakes);
 
         // Clear the adapter of previous earthquake data
         mAdapter.clear();
@@ -178,6 +178,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
         // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
+
         if (earthquakes != null && !earthquakes.isEmpty()) {
             mAdapter.addAll(earthquakes);
         }
